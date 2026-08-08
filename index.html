@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arena Playa — Résidence à El Mansouria | Vente sur plan</title>
+<meta name="description" content="Arena Playa, résidence fermée à El Mansouria, au bord de l'Atlantique entre Casablanca et Rabat. Studios, 2 et 3 chambres. Vente sur plan.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sea:#0E2436; --sea2:#16324a; --gold:#C6A15B; --gold-d:#a9853f;
+  --stone:#F6F2EA; --stone2:#efe8db; --ink:#1c2733; --muted:#6b7683; --line:#e2daca;
+  --disp:'Fraunces',Georgia,serif; --body:'Manrope',system-ui,sans-serif;
+  --mono:ui-monospace,'SFMono-Regular',Menlo,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);color:var(--ink);background:var(--stone);line-height:1.6;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1200px;margin:0 auto;padding:0 28px}
+.ey{font-family:var(--body);font-weight:600;font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-d)}
+.ey.on-dark{color:var(--gold)}
+h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.08;letter-spacing:-.01em}
+.btn{display:inline-flex;align-items:center;gap:.55em;font-weight:600;font-size:.92rem;padding:.85em 1.5em;border-radius:3px;border:1.5px solid transparent;cursor:pointer;transition:.25s;white-space:nowrap}
+.btn-gold{background:var(--gold);color:#231a07}
+.btn-gold:hover{background:var(--gold-d);color:#fff;transform:translateY(-2px)}
+.btn-ghost{border-color:rgba(255,255,255,.5);color:#fff}
+.btn-ghost:hover{background:#fff;color:var(--sea);border-color:#fff}
+.btn-ink{border-color:var(--sea);color:var(--sea)}
+.btn-ink:hover{background:var(--sea);color:#fff}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:.35s;padding:18px 0}
+.nav.scrolled{background:rgba(14,36,54,.92);backdrop-filter:blur(10px);padding:12px 0;box-shadow:0 6px 30px rgba(0,0,0,.18)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between}
+.brand{font-family:var(--disp);font-size:1.5rem;color:#fff;letter-spacing:.04em}
+.brand span{color:var(--gold)}
+.navlinks{display:flex;gap:30px;align-items:center}
+.navlinks a{color:#eef2f6;font-size:.9rem;font-weight:500;opacity:.85;transition:.2s}
+.navlinks a:hover{opacity:1;color:var(--gold)}
+.navtoggle{display:none;background:none;border:0;color:#fff;font-size:1.6rem;cursor:pointer}
+
+/* HERO */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+@keyframes kb{from{transform:scale(1.12)}to{transform:scale(1)}}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,36,54,.5) 0%,rgba(14,36,54,.05) 30%,rgba(14,36,54,.35) 62%,rgba(10,26,40,.92) 100%)}
+.hero-inner{position:relative;z-index:2;padding-bottom:8vh;padding-top:140px;width:100%}
+.hero h1{color:#fff;font-size:clamp(3.4rem,11vw,7.5rem);margin:.12em 0 .16em}
+.hero .sub{color:#eaf0f5;font-size:clamp(1.05rem,2.4vw,1.4rem);max-width:30ch;font-weight:400}
+.hero-cta{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
+.hero-meta{display:flex;gap:26px;margin-top:40px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.18);padding-top:22px}
+.hero-meta div{color:#fff}
+.hero-meta b{font-family:var(--disp);font-size:1.7rem;font-weight:500;display:block;line-height:1}
+.hero-meta small{color:#c8d2db;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase}
+.scrollhint{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);z-index:3;color:#fff;opacity:.7;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:8px}
+.scrollhint::after{content:"";width:1px;height:34px;background:linear-gradient(#fff,transparent);animation:down 1.8s infinite}
+@keyframes down{0%{opacity:0;transform:translateY(-8px)}50%{opacity:1}100%{opacity:0;transform:translateY(8px)}}
+
+/* SECTION base */
+section{padding:100px 0}
+.sec-head{max-width:60ch}
+.sec-head h2{font-size:clamp(2rem,4.6vw,3.2rem);margin:.3em 0 .4em}
+.sec-head p{color:var(--muted);font-size:1.06rem}
+.js .reveal{opacity:0;transform:translateY(26px);transition:.8s cubic-bezier(.2,.7,.2,1)}
+.js .reveal.in{opacity:1;transform:none}
+
+/* PROJECT + cartouche */
+#projet{background:var(--stone)}
+.proj-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;margin-top:20px}
+.proj-copy p{color:var(--muted);margin-bottom:18px;font-size:1.06rem}
+.tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.tag{font-size:.82rem;font-weight:600;padding:.5em 1em;border:1px solid var(--line);border-radius:2px;background:#fff;color:var(--sea)}
+/* cartouche (title-block) */
+.cartouche{border:1.5px solid var(--sea);background:#fff;position:relative}
+.cartouche-h{background:var(--sea);color:#fff;padding:14px 18px;font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;display:flex;justify-content:space-between;align-items:center}
+.cartouche-h .gold{color:var(--gold)}
+.spec{display:grid;grid-template-columns:1fr 1fr}
+.spec .row{padding:18px;border-bottom:1px solid var(--line);border-right:1px solid var(--line)}
+.spec .row:nth-child(2n){border-right:0}
+.spec .row .k{font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.spec .row .v{font-family:var(--disp);font-size:1.7rem;font-weight:500;color:var(--sea);margin-top:4px;line-height:1}
+.spec .row .u{font-size:.8rem;color:var(--muted);font-family:var(--body)}
+.spec .row.full{grid-column:1/-1;border-right:0}
+
+/* GALLERY */
+#galerie{background:var(--sea);color:#fff}
+#galerie .sec-head h2{color:#fff}
+#galerie .sec-head p{color:#b7c3ce}
+.gal{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:14px;margin-top:44px}
+.gal figure{position:relative;overflow:hidden;border-radius:4px;cursor:pointer}
+.gal img,.gal video{width:100%;height:100%;object-fit:cover;transition:.7s}
+.gal figure:hover img,.gal figure:hover video{transform:scale(1.07)}
+.gal figure::after{content:attr(data-cap);position:absolute;left:0;right:0;bottom:0;padding:14px;font-size:.8rem;font-weight:600;color:#fff;background:linear-gradient(transparent,rgba(6,18,28,.8));opacity:0;transition:.3s}
+.gal figure:hover::after{opacity:1}
+.g-big{grid-column:span 2;grid-row:span 2}
+.g-wide{grid-column:span 2}
+
+/* APARTMENTS */
+#appartements{background:var(--stone)}
+.apt-switch{display:inline-flex;border:1.5px solid var(--sea);border-radius:3px;overflow:hidden;margin-top:24px}
+.apt-switch button{font-family:var(--body);font-weight:600;font-size:.92rem;padding:.7em 1.6em;background:#fff;color:var(--sea);border:0;cursor:pointer;transition:.2s}
+.apt-switch button.active{background:var(--sea);color:#fff}
+.apt-view{display:grid;grid-template-columns:1.25fr .75fr;gap:44px;align-items:center;margin-top:34px}
+.apt-img{background:#fff;border:1px solid var(--line);border-radius:6px;padding:14px;box-shadow:0 24px 50px -30px rgba(14,36,54,.4)}
+.apt-info h3{font-size:2rem;color:var(--sea)}
+.apt-info .rooms{list-style:none;margin:18px 0}
+.apt-info .rooms li{padding:11px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;font-size:.98rem}
+.apt-info .rooms li span{color:var(--muted)}
+.note{font-size:.78rem;color:var(--muted);font-style:italic;margin-top:14px}
+
+/* LOCATION */
+#localisation{background:var(--sea);color:#fff}
+#localisation .sec-head h2{color:#fff}
+#localisation .sec-head p{color:#b7c3ce}
+.loc-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;margin-top:44px;align-items:stretch}
+.loc-map{border-radius:6px;overflow:hidden;min-height:340px;border:1px solid rgba(255,255,255,.15)}
+.loc-map iframe{width:100%;height:100%;min-height:340px;border:0;filter:grayscale(.2)}
+.dist{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.dist .d{border:1px solid rgba(255,255,255,.16);border-radius:4px;padding:18px;background:rgba(255,255,255,.03)}
+.dist .d b{font-family:var(--disp);font-size:1.5rem;font-weight:500;color:var(--gold);display:block}
+.dist .d small{color:#cdd6de;font-size:.82rem}
+.mondial{grid-column:1/-1;border:1px solid var(--gold);border-radius:4px;padding:20px;background:linear-gradient(90deg,rgba(198,161,91,.14),transparent);display:flex;gap:14px;align-items:center}
+.mondial b{color:var(--gold)}
+
+/* AMENITIES */
+#atouts{background:var(--stone)}
+.amen{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:44px}
+.amen .a{background:#fff;border:1px solid var(--line);border-radius:6px;padding:28px}
+.amen .a .ic{width:44px;height:44px;color:var(--gold)}
+.amen .a h3{font-size:1.2rem;margin:14px 0 6px;color:var(--sea)}
+.amen .a p{color:var(--muted);font-size:.94rem}
+
+/* CONTACT */
+#contact{background:var(--sea);color:#fff;position:relative;overflow:hidden}
+.ct-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-top:20px;align-items:start}
+#contact .eyw{color:var(--gold)}
+#contact h2{color:#fff;font-size:clamp(2rem,4.6vw,3rem)}
+#contact .lead{color:#c3cdd6;margin:16px 0 26px;max-width:42ch}
+.ct-actions{display:flex;flex-direction:column;gap:14px;max-width:340px}
+.ct-actions a{display:flex;align-items:center;gap:14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:5px;padding:16px 18px;transition:.2s}
+.ct-actions a:hover{background:rgba(255,255,255,.1);border-color:var(--gold)}
+.ct-actions .ic{width:26px;height:26px;color:var(--gold);flex:none}
+.ct-actions b{display:block;font-size:1rem}
+.ct-actions small{color:#aeb9c3;font-size:.8rem}
+.form{background:#fff;border-radius:8px;padding:30px;color:var(--ink)}
+.form h3{font-size:1.4rem;color:var(--sea);margin-bottom:6px}
+.form p.sm{color:var(--muted);font-size:.88rem;margin-bottom:18px}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:4px;font-family:var(--body);font-size:.95rem;color:var(--ink);background:var(--stone)}
+.field input:focus,.field select:focus,.field textarea:focus{outline:0;border-color:var(--gold)}
+.form .btn-gold{width:100%;justify-content:center;margin-top:6px}
+
+/* FOOT */
+footer{background:#081521;color:#8fa0ad;padding:50px 0 40px;font-size:.86rem}
+footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-start}
+footer .brand{font-size:1.3rem;margin-bottom:10px}
+.disc{max-width:52ch;color:#67788a;font-size:.76rem;margin-top:16px;line-height:1.7}
+
+/* WhatsApp float */
+.wa{position:fixed;right:20px;bottom:20px;z-index:60;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(37,211,102,.45);transition:.25s}
+.wa:hover{transform:scale(1.08)}
+.wa svg{width:30px;height:30px;fill:#fff}
+
+@media(max-width:900px){
+  .navlinks{position:fixed;inset:0 0 0 auto;width:78%;max-width:320px;background:var(--sea);flex-direction:column;justify-content:center;gap:26px;transform:translateX(100%);transition:.35s;padding:40px}
+  .navlinks.open{transform:none}
+  .navtoggle{display:block;z-index:60}
+  .proj-grid,.apt-view,.loc-grid,.ct-grid{grid-template-columns:1fr}
+  .gal{grid-template-columns:repeat(2,1fr);grid-auto-rows:160px}
+  .g-big{grid-column:span 2;grid-row:span 1}
+  .amen{grid-template-columns:1fr}
+  section{padding:70px 0}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+<script>document.documentElement.className+=' js';</script>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a href="#" class="brand">Arena Playa<span>.</span></a>
+    <div class="navlinks" id="navlinks">
+      <a href="#projet">Le projet</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#appartements">Appartements</a>
+      <a href="#localisation">Localisation</a>
+      <a href="#contact" class="btn btn-gold" style="padding:.6em 1.2em">Nous contacter</a>
+    </div>
+    <button class="navtoggle" id="navtoggle" aria-label="Menu">&#9776;</button>
+  </div>
+</nav>
+
+<header class="hero">
+  <video class="hero-bg" autoplay muted loop playsinline poster="images/img1.jpg"><source src="https://d8j0ntlcm91z4.cloudfront.net/user_3HVljo4vG65OXQYdXAJ3pDgop7B/hf_20260806_145545_f823e7f8-7a3c-4324-adb7-3788cbdfad6e.mp4" type="video/mp4"></video>
+  <div class="wrap hero-inner">
+    <span class="ey on-dark">El Mansouria &middot; Littoral Atlantique</span>
+    <h1>Arena Playa</h1>
+    <p class="sub">Une résidence fermée au bord de la mer, entre Casablanca et Rabat. Vente sur plan.</p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn btn-gold">Demander une brochure</a>
+      <a href="#projet" class="btn btn-ghost">Découvrir le projet</a>
+    </div>
+    <div class="hero-meta">
+      <div><b>~180</b><small>Appartements</small></div>
+      <div><b>R+2</b><small>Résidence fermée</small></div>
+      <div><b>~1 km</b><small>De la plage</small></div>
+      <div><b>2030</b><small>Ville du Mondial</small></div>
+    </div>
+  </div>
+  <div class="scrollhint">Défiler</div>
+</header>
+
+<section id="projet">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="ey">Le projet</span>
+      <h2>Vivre au bord de l'Atlantique, simplement.</h2>
+      <p>Arena Playa est une résidence fermée et sécurisée à El Mansouria, ville balnéaire en plein essor à quelques minutes des plages et à proximité de Mohammedia. Un cadre de vie pensé pour les familles — accessible, verdoyant et tranquille.</p>
+    </div>
+    <div class="proj-grid">
+      <div class="proj-copy reveal">
+        <p>Le projet s'étend sur un vaste terrain aménagé, organisé en immeubles bas de trois niveaux répartis autour de cours-piscines paysagères. Studios, appartements 2 et 3 chambres : chaque logement profite de la lumière, des espaces verts et du calme d'un domaine privé.</p>
+        <p>La construction se déroule par tranches — une opportunité d'acquérir en avant-première, à des conditions privilégiées.</p>
+        <div class="tags">
+          <span class="tag">Résidence fermée</span>
+          <span class="tag">Parking en sous-sol</span>
+          <span class="tag">Piscines &amp; jardins</span>
+          <span class="tag">Aire de jeux</span>
+          <span class="tag">Commerces &amp; loisirs</span>
+          <span class="tag">Sécurité 24/7</span>
+        </div>
+      </div>
+      <div class="cartouche reveal">
+        <div class="cartouche-h"><span>Fiche technique</span><span class="gold">Arena Playa / EL MANSOURIA</span></div>
+        <div class="spec">
+          <div class="row"><div class="k">Superficie terrain</div><div class="v">31 020 <span class="u">m&sup2;</span></div></div>
+          <div class="row"><div class="k">Typologie</div><div class="v">R+2</div><div class="u">rez-de-chaussée + 2 étages</div></div>
+          <div class="row"><div class="k">Logements</div><div class="v">~180</div><div class="u">studios, 2 &amp; 3 chambres</div></div>
+          <div class="row"><div class="k">Livraison</div><div class="v">Par tranches</div><div class="u">3 phases</div></div>
+          <div class="row full"><div class="k">Nature</div><div class="v" style="font-size:1.2rem">Résidence fermée sécurisée + zone loisirs</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="galerie">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="ey on-dark">Galerie</span>
+      <h2>Le projet en images</h2>
+      <p>Images de synthèse du projet — vues d'ensemble, cœurs d'îlot et espaces de vie.</p>
+    </div>
+    <div class="gal">
+      <figure class="g-big reveal" data-cap="Vue aérienne — littoral atlantique"><video src="https://d8j0ntlcm91z4.cloudfront.net/user_3HVljo4vG65OXQYdXAJ3pDgop7B/hf_20260806_145544_c1371515-9567-44ed-bcf8-15745eb870ff.mp4" autoplay muted loop playsinline poster="images/img2.jpg"></video></figure>
+      <figure class="reveal" data-cap="Cœur d'îlot &amp; piscine"><img loading="lazy" decoding="async" src="images/img3.jpg" alt="Piscine Arena Playa"></figure>
+      <figure class="reveal" data-cap="Espaces extérieurs"><img loading="lazy" decoding="async" src="images/img4.jpg" alt="Espaces extérieurs"></figure>
+      <figure class="g-wide reveal" data-cap="Le domaine vu du ciel"><img loading="lazy" decoding="async" src="images/img2.jpg" alt="Domaine Arena Playa"></figure>
+    </div>
+  </div>
+</section>
+
+<section id="appartements">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="ey">Les appartements</span>
+      <h2>Des espaces pensés pour la famille</h2>
+      <p>Du studio au 3 chambres, des logements lumineux et fonctionnels, avec terrasse.</p>
+      <div class="apt-switch" role="tablist">
+        <button id="b1" onclick="showApt('studio')">Studio</button>
+        <button id="b2" class="active" onclick="showApt('2')">2 chambres</button>
+        <button id="b3" onclick="showApt('3')">3 chambres</button>
+      </div>
+    </div>
+    <div class="apt-view">
+      <div class="apt-img reveal"><img loading="lazy" decoding="async" id="aptImg" src="images/img5.jpg" alt="Plan appartement"></div>
+      <div class="apt-info reveal">
+        <h3 id="aptTitle">Appartement 2 chambres</h3>
+        <ul class="rooms" id="aptRooms"></ul>
+        <a href="#contact" class="btn btn-ink">Recevoir le plan &amp; les prix</a>
+        <p class="note">Plans meublés d'ambiance — illustration non contractuelle. Surfaces et dimensions définitives selon plans de l'architecte.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="localisation">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="ey on-dark">Localisation</span>
+      <h2>El Mansouria, entre mer et villes</h2>
+      <p>Au bord de l'Atlantique, sur l'axe Casablanca &ndash; Rabat, à quelques minutes de la plage et de Mohammedia. Projet en <strong style="color:#fff">vente sur plan</strong> &mdash; localisation exacte ci-dessous.</p>
+    </div>
+    <div class="loc-grid">
+      <div class="loc-map reveal"><iframe loading="lazy" src="https://maps.google.com/maps?q=33.743667,-7.306861&z=16&output=embed"></iframe></div>
+      <div class="dist reveal">
+        <div class="d"><b>~1 km</b><small>Plage de Mansouria</small></div>
+        <div class="d"><b>~1 h</b><small>Casablanca &amp; Rabat</small></div>
+        <div class="d"><b>A1</b><small>Autoroute à proximité</small></div>
+        <div class="d"><b>Mohammedia</b><small>Commerces &amp; services</small></div>
+        <div class="mondial">
+          <span style="font-size:1.6rem">&#9917;</span>
+          <div><b>Coupe du Monde 2030</b><br><small style="color:#cdd6de">El Mansouria accueillera des matchs — un fort potentiel de valorisation.</small></div>
+        </div>
+        <div class="mondial">
+          <span style="font-size:1.5rem">&#128205;</span>
+          <div><b>Bureau de vente sur place</b><br><small style="color:#cdd6de">Le projet est en vente sur plan : rien n'est encore construit. Venez découvrir les plans et réserver votre logement sur place. &middot; <a href="https://www.google.com/maps?q=33.743667,-7.306861" target="_blank" style="color:var(--gold)">33&deg;44'37.2&quot;N 7&deg;18'24.7&quot;W</a></small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="atouts">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="ey">Les atouts</span>
+      <h2>Ce qui fait la vie à Arena Playa</h2>
+    </div>
+    <div class="amen">
+      <div class="a reveal"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg><h3>Résidence fermée</h3><p>Un domaine privé et sécurisé, pour la tranquillité de toute la famille.</p></div>
+      <div class="a reveal"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 15c2-2 4-2 6 0s4 2 6 0 4-2 6 0M2 19c2-2 4-2 6 0s4 2 6 0 4-2 6 0M6 11V5m12 6V5"/></svg><h3>Piscines &amp; jardins</h3><p>Des cœurs d'îlot paysagers avec piscines, transats et espaces verts.</p></div>
+      <div class="a reveal"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="3"/><path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg><h3>Pensé familles</h3><p>Aire de jeux pour enfants et espaces de vie conviviaux.</p></div>
+      <div class="a reveal"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><h3>Parking sous-sol</h3><p>Un stationnement privatif et sécurisé sous la résidence.</p></div>
+      <div class="a reveal"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 9l9-6 9 6v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 21v-6h6v6"/></svg><h3>Commerces &amp; loisirs</h3><p>Une zone d'activités et de loisirs intégrée au projet.</p></div>
+      <div class="a reveal"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l3 3-3 3-3-3zM4 22l8-8 8 8M12 8v6"/></svg><h3>Bord de mer</h3><p>À quelques minutes des plages de sable d'El Mansouria.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="ct-grid">
+      <div class="reveal">
+        <span class="ey eyw">Contact</span>
+        <h2>Réservez votre appartement en avant-première</h2>
+        <p class="lead">Laissez-nous vos coordonnées : nous vous envoyons la brochure, les plans et la grille de prix, et répondons à toutes vos questions.</p>
+        <div class="ct-actions">
+          <a href="https://wa.me/2126XXXXXXXX" id="waLink" target="_blank">
+            <svg class="ic" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.6-.6-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 .9-2.2c.2-.3.5-.3.6-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.4.6-.3.3c-.2.2-.3.4-.2.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.2.1.4.1.6-.1l.8-1c.2-.2.3-.2.6-.1l2 .9c.2.1.4.2.4.3.1.2.1.7-.1 1.3z"/></svg>
+            <span><b>WhatsApp</b><small>Réponse rapide</small></span>
+          </a>
+          <a href="tel:+2126XXXXXXXX">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+            <span><b>Appeler</b><small>+212 6 XX XX XX XX</small></span>
+          </a>
+          <a href="mailto:contact@arenaplaya.ma">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            <span><b>E-mail</b><small>contact@arenaplaya.ma</small></span>
+          </a>
+        </div>
+      </div>
+      <div class="form reveal">
+        <h3>Demander la brochure</h3>
+        <p class="sm">Nous vous recontactons rapidement.</p>
+        <div class="field"><label>Nom complet</label><input id="f_nom" type="text" placeholder="Votre nom"></div>
+        <div class="field"><label>Téléphone</label><input id="f_tel" type="tel" placeholder="06 XX XX XX XX"></div>
+        <div class="field"><label>Type d'appartement</label><select id="f_type"><option>Studio</option><option selected>2 chambres</option><option>3 chambres</option><option>Je ne sais pas encore</option></select></div>
+        <div class="field"><label>Message (facultatif)</label><textarea id="f_msg" rows="3" placeholder="Votre message..."></textarea></div>
+        <button class="btn btn-gold" onclick="sendWA()">Envoyer via WhatsApp</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <div class="brand" style="color:#fff">Arena Playa<span style="color:var(--gold)">.</span></div>
+      <div>Résidence à El Mansouria, Maroc.</div>
+      <p class="disc">Images de synthèse et illustrations non contractuelles. Les surfaces, dimensions, prestations et délais de livraison sont donnés à titre indicatif et peuvent évoluer selon les plans définitifs de l'architecte et l'avancement du projet. Ce site est un support de présentation commerciale.</p>
+    </div>
+    <div style="text-align:right">
+      <div style="margin-bottom:8px"><a href="#projet">Le projet</a></div>
+      <div style="margin-bottom:8px"><a href="#appartements">Appartements</a></div>
+      <div style="margin-bottom:8px"><a href="#localisation">Localisation</a></div>
+      <div><a href="#contact">Contact</a></div>
+    </div>
+  </div>
+</footer>
+
+<a class="wa" href="https://wa.me/2126XXXXXXXX" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.6-.6-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 .9-2.2c.2-.3.5-.3.6-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.4.6-.3.3c-.2.2-.3.4-.2.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.2.1.4.1.6-.1l.8-1c.2-.2.3-.2.6-.1l2 .9c.2.1.4.2.4.3.1.2.1.7-.1 1.3z"/></svg>
+</a>
+
+<script>
+// ==== CONFIG : remplace par le vrai numéro (format international, sans +, sans espaces) ====
+var WHATSAPP="2126XXXXXXXX";
+document.getElementById('waLink').href="https://wa.me/"+WHATSAPP;
+document.querySelector('.wa').href="https://wa.me/"+WHATSAPP;
+
+// nav scroll
+var nav=document.getElementById('nav');
+addEventListener('scroll',function(){nav.classList.toggle('scrolled',scrollY>40)});
+// burger
+var links=document.getElementById('navlinks');
+document.getElementById('navtoggle').onclick=function(){links.classList.toggle('open')};
+links.querySelectorAll('a').forEach(function(a){a.onclick=function(){links.classList.remove('open')}});
+
+// reveal
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.14});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+function revealInView(){document.querySelectorAll('.reveal:not(.in)').forEach(function(e){if(e.getBoundingClientRect().top < innerHeight*1.05) e.classList.add('in')})}
+addEventListener('load',function(){revealInView();setTimeout(revealInView,200)});
+addEventListener('scroll',revealInView,{passive:true});
+
+// apartments
+var APT={
+ "studio":{img:"images/img6.jpg",title:"Studio",rooms:[["Séjour + cuisine ouverte","Pièce de vie"],["Coin nuit / chambre","1"],["Salle de bain","1"],["Terrasse","Extérieur privatif"]]},
+ "2":{img:"images/img5.jpg",title:"Appartement 2 chambres",rooms:[["Séjour / salle à manger","Espace de vie principal"],["Cuisine","Ouverte ou fermée"],["Chambres","2 chambres"],["Salle de bain","1"],["Terrasse","Extérieur privatif"]]},
+ "3":{img:"images/img7.jpg",title:"Appartement 3 chambres",rooms:[["Séjour / salle à manger","Espace de vie principal"],["Cuisine","Ouverte ou fermée"],["Chambres","3 chambres"],["Salles de bain","2"],["Terrasse","Extérieur privatif"]]}};
+function showApt(n){n=String(n);
+  document.getElementById('aptImg').src=APT[n].img;
+  document.getElementById('aptTitle').textContent=APT[n].title;
+  document.getElementById('b1').classList.toggle('active',n=='studio');
+  document.getElementById('b2').classList.toggle('active',n=='2');
+  document.getElementById('b3').classList.toggle('active',n=='3');
+  var ul=document.getElementById('aptRooms');ul.innerHTML="";
+  APT[n].rooms.forEach(function(r){ul.insertAdjacentHTML('beforeend','<li>'+r[0]+'<span>'+r[1]+'</span></li>')});
+}
+showApt('2');
+
+// form -> WhatsApp
+function sendWA(){
+  var n=document.getElementById('f_nom').value||"-";
+  var t=document.getElementById('f_tel').value||"-";
+  var ty=document.getElementById('f_type').value;
+  var m=document.getElementById('f_msg').value||"";
+  var txt="Bonjour, je suis interesse(e) par la residence Arena Playa.%0A%0ANom: "+encodeURIComponent(n)+"%0ATelephone: "+encodeURIComponent(t)+"%0AType: "+encodeURIComponent(ty)+(m?"%0AMessage: "+encodeURIComponent(m):"");
+  window.open("https://wa.me/"+WHATSAPP+"?text="+txt,"_blank");
+}
+</script>
+</body>
+</html>
